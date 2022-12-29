@@ -8,7 +8,7 @@ from itertools import chain, repeat
 from dotenv import load_dotenv
 
 import torch
-import pyaudio
+# import pyaudio
 import asyncio
 import wave
 
@@ -59,12 +59,12 @@ if feat_proc is not None:
     feat_proc.to(device)
     feat_proc.eval()
 
-p = pyaudio.PyAudio()
+# p = pyaudio.PyAudio()
 
 stream = p.open(
     rate=96000,
     channels=1,
-    format=pyaudio.paInt16,
+    # format=pyaudio.paInt16,
     input=True,  # input stream flag
 )
 
