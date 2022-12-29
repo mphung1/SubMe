@@ -10,7 +10,6 @@
     "paths": {
       "@components/*": ["src/components/*"],
       "@pages/*": ["src/pages/*"],
-      "@lib/*": ["src/lib/*"],
     },
     "allowJs": true,
     "skipLibCheck": true,
