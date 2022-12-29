@@ -1,23 +1,7 @@
 import { useState, useEffect, useReducer } from "react";
 import transcription from "@pages/api/transcription";
 import ClimbingBoxLoader from "react-spinners/ClimbingBoxLoader";
-import {
-  Container,
-  Box,
-  Flex,
-  Text,
-  Heading,
-  Divider,
-  Tabs,
-  TabList,
-  TabPanels,
-  Tab,
-  TabPanel,
-  Center,
-  Spacer,
-  VStack,
-  Button
-} from "@chakra-ui/react";
+import { Container, Box, Flex, Text, Heading, Divider, Tabs, TabList, TabPanels, Tab, TabPanel, Center,Spacer, VStack, Button } from "@chakra-ui/react";
 import ReactPlayer from "react-player";
 import ModelSelect from "react-select";
 import CustomButton from "@components/Fixed/CustomButton";
@@ -25,6 +9,7 @@ import Search from "@components/Demo/Search";
 import Upload from "@components/Demo/Upload";
 import UrlReader from "@components/Demo/UrlReader";
 import InfoPopOver from "@components/Demo/InfoPopOver";
+const FormData = require("form-data");
 
 export default function Test() {
   const modelOptions = [
@@ -41,15 +26,12 @@ export default function Test() {
   const [loading, setLoading] = useState(false);
   const [url, setUrl] = useState<string>();
   const [options, showOptions] = useState(true);
-  const [model, setModel] = useState<string>();
+  const [model, setModel] = useState<string>("quartznet");
   const [inputFileType, setInputFileType] = useState<string>();
-  const [uploadedFile, handleUploadedFile] = useState<Blob | string | string[]>(
-    null
-  );
+  const [uploadedFile, handleUploadedFile] = useState<Blob | string | string[]>(null);
   const [transcript, showTranscript] = useState<string>();
   const [latencyNumber, showLatencyNumber] = useState<number>();
 
-  const FormData = require("form-data");
   const bodyFormData = new FormData();
   bodyFormData.append("dataset_name", "LibriSpeech");
   bodyFormData.append("model_name", `${model}`);
@@ -77,6 +59,17 @@ export default function Test() {
     showLatencyNumber(res.data.latency);
     setLoading(false);
   };
+
+  const handleExport = async () => {
+    const transcriptionText = new FormData();
+    transcriptionText.append("text", transcript);
+    const res = await transcription.post(
+      "/export_file",
+      transcriptionText,
+      config,
+    );
+
+  }
 
   const setSelectedModel = (event: { value: React.SetStateAction<string> }) => {
     setModel(event.value);
@@ -208,7 +201,7 @@ export default function Test() {
                     window.alert("This feature is under development.")
                   }
                 />
-                <CustomButton btnText="Export" ml={1} />
+                <CustomButton btnText="Export" ml={1} onClick={handleExport}/>
 
               </VStack>
             </Box>

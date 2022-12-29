@@ -7,14 +7,21 @@ load_dotenv()
 from flask import Flask, jsonify, request
 from flask_cors import CORS, cross_origin
 import inference
+import random
+from fpdf import FPDF
+from google.cloud import storage
 
 app = Flask(__name__)
 app.config['CORS_HEADERS'] = 'Content-Type'
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'gcp-key.json'
+storage_client = storage.Client()
+bucket = storage_client.get_bucket('subme-transcription-files')
+
 @app.route("/")
 def hello_world():
-    return "<p>Hello, World!</p>"
+    return "<p>Hello world! Welcome to SubMe API.</p>"
 
 @app.route('/get_api_key', methods=['POST'])
 def GetApiKey():
@@ -65,6 +72,34 @@ def TranscribeAudio():
     else:
         return jsonify({"message":"check api key"})
 
+@app.route('/export_file', methods=['POST'])
+@cross_origin(origin='*',headers=['Content- Type','Authorization'])
+def ExportFile():
+    try:
+        transcription_text = request.form.get('text');
+        file_code = random.randint(0, 1000000000)
+        file_path = "generatedFiles/" + str(file_code) + ".pdf"
+
+        file = FPDF()
+        file.add_page()
+        file.set_font("Arial", size=12)
+        file.cell(200, 10, txt="Transcript", ln=1, align="C")
+        file.cell(200, 10, txt=transcription_text, ln=2, align="C")
+
+        file.output(file_path)
+
+        bucket.blob(file_path)
+        bucket.upload_from_filename(str(file_code)+".pdf")
+
+        newResponse = {
+          pdfDownload: "https://storage.googleapis.com/subme-transcription-files/" + fileCode + ".pdf"
+        }
+
+        return jsonify(newResponse)
+
+    except Exception as e:
+        print(e)
+        return jsonify({"message":"cannot export file"})
 
 if __name__ == '__main__':
     app.run(debug=True)
