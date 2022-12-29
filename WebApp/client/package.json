@@ -1,0 +1,48 @@
+{
+  "name": "asr",
+  "version": "0.1.0",
+  "description": "frontend",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev -H 0.0.0.0",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "prettier": "prettier -write ."
+  },
+  "keywords": [],
+  "author": "Minh Phung",
+  "license": "MIT",
+  "dependencies": {
+    "@chakra-ui/icons": "^2.0.2",
+    "@chakra-ui/react": "^2.2.1",
+    "@ffmpeg/core": "^0.8.5",
+    "@ffmpeg/ffmpeg": "^0.9.8",
+    "@types/react-router-dom": "^5.3.3",
+    "axios": "^0.27.2",
+    "dotenv": "^16.0.1",
+    "form-data": "^4.0.0",
+    "next": "^12.1.6",
+    "react": "^18.1.0",
+    "react-code-blocks": "^0.0.9-0",
+    "react-dom": "^18.1.0",
+    "react-icons": "^4.4.0",
+    "react-player": "^2.10.1",
+    "react-router-dom": "^6.3.0",
+    "react-select": "^5.4.0",
+    "react-spinners": "^0.12.0",
+    "react-table": "^7.8.0",
+    "react-tsparticles": "^2.0.6",
+    "react-youtube": "^9.0.3",
+    "styled-components": "^5.3.5"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.40",
+    "@types/react": "^18.0.12",
+    "@types/styled-components": "^5.1.25",
+    "eslint": "^8.17.0",
+    "eslint-config-next": "^12.1.6",
+    "prettier": "^2.6.2",
+    "typescript": "^4.7.3"
+  }
+}
