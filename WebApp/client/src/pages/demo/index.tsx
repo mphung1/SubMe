@@ -69,6 +69,8 @@ export default function Test() {
       config,
     );
 
+    const fileLink = res.data.fileLink
+    window.open(fileLink)
   }
 
   const setSelectedModel = (event: { value: React.SetStateAction<string> }) => {

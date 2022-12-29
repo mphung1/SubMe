@@ -17,7 +17,7 @@ cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'gcp-key.json'
 storage_client = storage.Client()
-bucket = storage_client.get_bucket('subme-transcription-files')
+bucket = storage_client.get_bucket('subme-transcription')
 
 @app.route("/")
 def hello_world():
@@ -88,11 +88,14 @@ def ExportFile():
 
         file.output(file_path)
 
-        bucket.blob(file_path)
-        bucket.upload_from_filename(str(file_code)+".pdf")
+        blob = bucket.blob(str(file_code)+".pdf")
+        blob.upload_from_filename(file_path)
+
+        if os.path.exists(file_path):
+            os.remove(file_path)
 
         newResponse = {
-          pdfDownload: "https://storage.googleapis.com/subme-transcription-files/" + fileCode + ".pdf"
+          "fileLink": "https://storage.googleapis.com/subme-transcription/" + str(file_code) + ".pdf"
         }
 
         return jsonify(newResponse)
