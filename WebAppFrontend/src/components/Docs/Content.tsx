@@ -22,8 +22,8 @@ function Content({ Title, Description, children }: ContentProps) {
       bgColor={useColorModeValue("white", "blackAlpha.800")}
       flexDirection="column"
       overflow="hidden"
-      overflowX="scroll"
-      minH="100vh"
+      overflowX="hidden"
+      minH="50vh"
       marginBottom="0"
     >
       <Box pos="relative" ml={{ base: "0rem", md: "4rem"}} mt="1rem">

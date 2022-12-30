@@ -5,7 +5,7 @@ import { Flex, Text, Box } from "@chakra-ui/react";
 import { useTable } from "react-table";
 import styled from "styled-components";
 
-const API_dashboard = () => {
+const APIDocs = () => {
   const columns = useMemo(
     () => [
       {
@@ -32,7 +32,7 @@ const API_dashboard = () => {
     []
   );
 
-  const data = useMemo(
+  const transcribeData = useMemo(
     () => [
       {
         key: 1,
@@ -65,8 +65,22 @@ const API_dashboard = () => {
     ],
     []
   );
+
+  const exportData = useMemo(
+    () => [
+      {
+        key: 1,
+        col1: "text",
+        col2: "string",
+        col3: "Yes",
+        col4: "Transcription text to be exported to pdf format.",
+      },
+    ],
+    []
+  );
+
   return (
-      <Flex>
+      <div>
         <Content Title="Transcribe File">
           <Flex flexDirection="column">
             <Flex flexDirection="row">
@@ -81,13 +95,13 @@ const API_dashboard = () => {
               Parameters
             </Text>
             <Styles>
-              <Table columns={columns} data={data} />
+              <Table columns={columns} data={transcribeData} />
             </Styles>
             <Text as="b" mt="1.5rem">
               Example Request
             </Text>
             <CodeBlock
-              text={` curl --location --request POST 'http://127.0.0.1:5000/transcribe_file'  \u005C
+              text={` curl --location --request POST 'http://subme-api.herokuapp.com/transcribe_file'  \u005C
     --header 'Accept: application/json'  \u005C
     --header 'Content-Type: application/json'  \u005C
     --data-raw '{
@@ -106,9 +120,9 @@ const API_dashboard = () => {
             </Text>
             <CodeBlock
               text={` {
-            "latency": 6.39613534,
-            "transcript": "Transcribed text from the API response"
-    }`}
+            latency: 6.39613534,
+            transcript: "Transcription text from the API response"
+}`}
               language={"json"}
               showLineNumbers={false}
               theme={monokaiSublime}
@@ -116,7 +130,53 @@ const API_dashboard = () => {
             />
           </Flex>
         </Content>
-      </Flex>
+
+        <Content Title="Export File">
+          <Flex flexDirection="column">
+            <Flex flexDirection="row">
+              <Text as="b" color="yellow.700">
+                POST
+              </Text>
+              <Box ml="1rem" bg="gray.100">
+                <Text color="gray.500">/export_file</Text>
+              </Box>
+            </Flex>
+            <Text as="b" mt="1rem">
+              Parameters
+            </Text>
+            <Styles>
+              <Table columns={columns} data={exportData} />
+            </Styles>
+            <Text as="b" mt="1.5rem">
+              Example Request
+            </Text>
+            <CodeBlock
+              text={` curl --location --request POST 'http://subme-api.herokuapp.com/export_file'  \u005C
+    --header 'Accept: application/json'  \u005C
+    --header 'Content-Type: application/json'  \u005C
+    --data-raw '{
+      "text": "Sample text"
+}'`}
+              language={"javascript"}
+              showLineNumbers={false}
+              theme={codepen}
+              codeBlock
+            />
+            <Text as="b" mt="1.5rem">
+              Example Response
+            </Text>
+            <CodeBlock
+              text={` {
+            fileLink: "https://storage.googleapis.com/subme-transcription/259571208.pdf"                                                                                                                                         
+}`}
+              language={"javascript"}
+              showLineNumbers={false}
+              theme={monokaiSublime}
+              codeBlock
+            />
+          </Flex>
+        </Content>
+      </div>
   );
 };
 
@@ -206,4 +266,4 @@ const Styles = styled.div`
   }
 `;
 
-export default API_dashboard;
+export default APIDocs;
