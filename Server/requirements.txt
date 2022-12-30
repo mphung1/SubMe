@@ -1,4 +1,5 @@
 cmudict==1.0.2
+dotenv==0.0.5 
 Flask==2.0.3
 Flask-Cors==3.0.10
 imageio==2.16.0
