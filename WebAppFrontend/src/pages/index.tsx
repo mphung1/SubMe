@@ -95,7 +95,7 @@ const APIDocs = () => {
               Parameters
             </Text>
             <Styles>
-              <Table columns={columns} data={transcribeData} />
+              <Table style={{ border: "2px solid rgb(0, 0, 0)" }} columns={columns} data={transcribeData} />
             </Styles>
             <Text as="b" mt="1.5rem">
               Example Request
@@ -145,7 +145,7 @@ const APIDocs = () => {
               Parameters
             </Text>
             <Styles>
-              <Table columns={columns} data={exportData} />
+              <Table style={{ border: "2px solid rgb(0, 0, 0)" }} columns={columns} data={exportData} />
             </Styles>
             <Text as="b" mt="1.5rem">
               Example Request
@@ -167,7 +167,7 @@ const APIDocs = () => {
             </Text>
             <CodeBlock
               text={` {
-            fileLink: "https://storage.googleapis.com/subme-transcription/259571208.pdf"                                                                                                                                         
+            fileLink: "https://storage.googleapis.com/subme-transcription/259571208.pdf"
 }`}
               language={"javascript"}
               showLineNumbers={false}
