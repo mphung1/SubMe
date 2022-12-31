@@ -38,7 +38,7 @@ const APIDocs = () => {
         key: 1,
         col1: "dataset_name",
         col2: "string",
-        col3: "Yes",
+        col3: "No",
         col4: "Name of the dataset that should be used (LibriSpeech)",
       },
       {
@@ -60,7 +60,7 @@ const APIDocs = () => {
         col1: "file",
         col2: "string/blob",
         col3: "Yes",
-        col4: "The Blob content of uploaded file or URL of Youtube video",
+        col4: "The blob content of uploaded file or URL of Youtube video",
       },
     ],
     []
@@ -73,7 +73,7 @@ const APIDocs = () => {
         col1: "text",
         col2: "string",
         col3: "Yes",
-        col4: "Transcription text to be exported to pdf format.",
+        col4: "Transcription text to be exported to pdf format",
       },
     ],
     []
