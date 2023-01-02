@@ -101,7 +101,7 @@ const APIDocs = () => {
               Example Request
             </Text>
             <CodeBlock
-              text={` curl --location --request POST 'https://subme-373121.ue.r.appspot.com/transcribe_file'  \u005C
+              text={` curl --location --request POST 'https://subme-api.ue.r.appspot.com/transcribe_file'  \u005C
     --header 'Accept: application/json'  \u005C
     --header 'Content-Type: application/json'  \u005C
     --data-raw '{
@@ -151,7 +151,7 @@ const APIDocs = () => {
               Example Request
             </Text>
             <CodeBlock
-              text={` curl --location --request POST 'https://subme-373121.ue.r.appspot.com/export_file'  \u005C
+              text={` curl --location --request POST 'https://subme-api.ue.r.appspot.com/export_file'  \u005C
     --header 'Accept: application/json'  \u005C
     --header 'Content-Type: application/json'  \u005C
     --data-raw '{

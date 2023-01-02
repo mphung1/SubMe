@@ -4,7 +4,7 @@
 - Users can choose to get video/audio files transcribed with options on backend model or type of input file.
 - Tech stack: Pytorch, Flask, React, Next.js, Google Cloud Service.
 
-The server is available at https://subme-373121.ue.r.appspot.com/
+The server is available at https://subme-api.ue.r.appspot.com/
 
 ## Existing API endpoints
 
